@@ -17,7 +17,7 @@ Independent vector validation and human semantic approval still REQUIRES_REVIEW.
 Search scope: current available repository docs and candidate .md/.py/.json occurrences of
 the exact identity; `git log --all -S'MPT-SNAPSHOT@1' -- docs`; tracked candidate inventory.
 Log search and `git ls-files docs/architecture/experiments/mpt-publication-poc` returned no
-entries. The candidate is untracked; available Git history cannot authenticate its past.
+entries. This records the local C:/data-market worktree under HEAD27b2db3e3818e4325e5cd3df27f4ba1bc797ab15; its docs/architecture/experiments/mpt-publication-poc/ path was untracked at the recorded inspection. This is not an assertion about the external audit repository. A commit alone does not prove worktree tracking state; available history does not authenticate its past.
 No runtime/network, deployed environment, external repository or historical ZIP examined.
 Source records below are locatable by filename and named heading, with final hashes bound by
 MANIFEST. This is positive evidence of candidate proposals, not evidence of external absence.
@@ -96,7 +96,7 @@ No vectors, fixtures, tests or 428-slot results were generated in this round.
 
 Repository text search finds candidate @1 use in contract, source, vectors and review pages.
 Git history available through `git log --all -S'MPT-SNAPSHOT@1' -- docs` yielded no entries;
-the candidate directory is untracked. This does not authenticate absent external history.
+the candidate directory in the local C:/data-market worktree under HEAD27b2db3e3818e4325e5cd3df27f4ba1bc797ab15 was untracked at that inspection (rechecked locally on2026-10-30 UTC). This statement does not describe the external audit checkout; a commit does not encode untracked files. This does not authenticate absent external history.
 Prior approved/consumed semantics remain UNRESOLVED, not compatible by default. Obtain
 consumer/version records; incompatible approved semantics require an explicit new-version
 decision (e.g. @2), reader dispatch and independently reviewed expectations, never relabel @1.

@@ -1,5 +1,32 @@
 # Human deliberation record - candidate 0.23 / order v2.1
 
+## Targeted response to independent recheck IR-P02 v3.3
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. User requested the report's documentary
+corrections; no experimental or approval authority follows.
+Report: files_ETEOS-MPT-IR-P02-INDEPENDENT-RECHECK-v3.3.md;
+SHA256ebf30da7a41899c0c6332eecec745cb37e16465eafc5eba96f1f99e32e6e12d9.
+External checkout/commit1c2521e5fe8d809913bfeeedeb33aad2749caab4 and tracking assertions
+are report-provided provenance, not independently inspected by this local task.
+Local input HEAD27b2db3e3818e4325e5cd3df27f4ba1bc797ab15; manifest
+ed9b39027ba10be8f7fea1318a35214c85e738fa13c4dd761cba638a8d5793f4,74 files/73 hashes verified.
+
+| Report item | Documentary response | Residual |
+| --- | --- | --- |
+| F1 PARTIALLY_RESOLVED | Historical stage identities retained | Original historical byte snapshots still absent from this review input; no reconstruction |
+| F2 RESOLVED | Existing flag contract preserved byte-identically | Not human contract approval |
+| F3 RESOLVED statically | DDL/schema/SNAP-P03 unchanged | Deployed evidence and eight negative executions absent |
+| F4 PARTIALLY_RESOLVED | Four fully expandable documentary negatives added in vector supplement: D-NAME,D-TYPE,D-PK-ORDER,D-EXTRA | Renewed independent review and observed runtime behavior absent |
+| F5 PARTIALLY_RESOLVED in report | Two untracked statements qualified to local checkout path/HEAD and worktree observation | Historical@1 UNRESOLVED; no absent-consumer claim or @2 selection |
+
+The report found no expanded-vector arithmetic/offset defect; this is attributed to the
+external report, not self-certification. Its targeted corrections are not formal approvals.
+Tracking is worktree-specific: a commit SHA alone does not encode presence of untracked files.
+Local ls-files for the candidate manifest returned no tracked entry on2026-10-30 UTC under
+the stated HEAD. That observation is not asserted about the external audit checkout.
+H02 and the handoff vector binding are refreshed. Historical sections retain dated scope.
+
+
 ## Order v3.2 - focused F1-F5 disposition
 
 READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. The full external v3.1 report was not
@@ -497,7 +524,7 @@ review updated provenance and bind the final external manifest. No assembly is a
 | Ref | Preserved artifact | SHA256 |
 | --- | --- | --- |
 | H01 | SNAP-P01-DECISION.md | 017391c0fce1b9083c1b62a69ef9299615a8678752a4b98bd6cbc329eb16c048 |
-| H02 | SNAP-P02-DECISION.md | 4fd014978a5f95a8e000f245facbee80513ed8796f859d22839f83d436fab094 |
+| H02 | SNAP-P02-DECISION.md | 0151f8fae5f5458fcee80d53162690abab241219a7210eeed691b5e224cd0822 |
 | H03 | SNAP-P03-DECISION.md | 231abfc8be9af885f41cf48362d44dfd41feee7b91b6f67e92126efe1cc9dbd6 |
 | H04 | SNAP-P04-DECISION.md | 8af1937c93d0583f9bdceb82802ee62c448738e8828805c9d3fa1646c5169fee |
 | H05 | SNAP-P05-DECISION.md | e8ee7ac701eeedddf6ee1b7e7e1ba2ff39f1107c3e19b62afafc43b56cf91e36 |

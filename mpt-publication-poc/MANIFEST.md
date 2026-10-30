@@ -1,5 +1,23 @@
 # MPT Publication PoC - candidate manifest0.26
 
+## Current targeted documentary correction after independent recheck v3.3
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN.
+Input manifested9b39027ba10be8f7fea1318a35214c85e738fa13c4dd761cba638a8d5793f4;
+HEAD27b2db3e3818e4325e5cd3df27f4ba1bc797ab15;74 files/all73 hashes verified.
+74 current files: zero created,six modified,68 preserved.
+Modified: IR-P02-MULTIROW-INDEPENDENT-VECTORS.md, SNAP-P02-DECISION.md,
+EXPECTED-DECISION-PACKAGE.md, IR-P02-VECTOR-REVIEW-HANDOFF.md, REVIEW-NOTES.md, MANIFEST.md.
+Added exact manual descriptor-name/type/PK-order and extra-table negative inputs; no runtime.
+Scoped tracking statements to the local path/HEAD/worktree, not external audit repository.
+All contract/source/SQL/schema/tests/fixtures/SNAP-P03 bytes unchanged. Historical sections
+retain original scope; final hashes below govern current files. Own digest delivered externally.
+Review report provenance and dispositions in decision packet; no independent acceptance of
+these new examples claimed. Historical@1 and deployment remain unresolved, no @2 selected.
+No execution,428-slot output,commit,ZIP or approval. All existing gates/phase restrictions
+remain unchanged; see REVIEW-NOTES. This is documentary preparation only.
+
+
 ## Current documentary revision - order v3.2
 
 READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN; PROPOSED / REQUIRES_REVIEW.
@@ -217,7 +235,7 @@ No self-attested approval, circular hash or automatic promotion.
 | EXPECTED-API-MIGRATION.md | 93c77cf9fe4e58e7dd7698caf34ce6479716a5b8eefc700758a8e001201e3a63 |
 | EXPECTED-BUNDLE-SPEC.md | ca7ff44bc27fd8a8fe2a16ff14eb8c3f01a58c0bac5e301c76734aa588936fa9 |
 | EXPECTED-COUNTER-PROPOSAL.md | e3092f9debe152025ebd5443f9b8bf071f0d15f0416ace22d357c180ce7a7863 |
-| EXPECTED-DECISION-PACKAGE.md | a6659cd3e648c5fd4e21905f5b8a7042329d3f5445b136d34df63296c483116f |
+| EXPECTED-DECISION-PACKAGE.md | ef57ed4ac0bdc5aab93f2f77e5dba4d9fe09bb7d050d32f064820186133735ad |
 | EXPECTED-EXTERNAL-FREEZE-CONTRACT.md | 80e10029cb771ed3be5abccf5319423c0837eb5e0010773e3fe9ce9a792ad644 |
 | EXPECTED-REVIEW-MATRIX.md | 08ef59c7f5115b6cc7b696d886569028f30f6647fabb2f4a74611175dbfe094a |
 | EXPECTED-SLOT-TRACEABILITY.md | 259312affed3107ab81e738e62c49465d7cfe90106d27badde32c1f308a2b415 |
@@ -228,7 +246,7 @@ No self-attested approval, circular hash or automatic promotion.
 | INVARIANT-ENFORCEMENT.md | 90adb04293aad475ac1b75e9b2bd6239e16f6018d65fd64ea9b94c0bf0e7ef49 |
 | LOCK-ORDER.md | 33bdec5f7d42b0cbc90643df4748fb68d70e946d953b0859f6f6ae4860353228 |
 | OFFLINE-CAPSULE-MANIFEST.json | ed9f87fe7b19277a053256792f52d6285bc479e4a6d80ced37bb15aa855819c4 |
-| REVIEW-NOTES.md | 3e4b947c6482ba8ebf4ce2a026c86d15d08ece0a6856a15e6db1bfe2adc9670f |
+| REVIEW-NOTES.md | 284a0c180cd99cde767f6d99699671c6b7640a34809a62e8c2b34c4525ceaef1 |
 | runner/approval.example.json | 7e27f74e11d1ed791b08c5e53a1c921ad208a7e2b7ab6c2dbfc0c8d72eeb1f8a |
 | runner/cleanup.sql | c7221f63a8aedf776478006b5365e3da90acb4186e5a95e721dc6dee6a8feaa9 |
 | runner/collector-approval.example.json | 751e4c941421a6426a813cdbb65aecb57ebded9e07ea974747d718246da65d4a |
@@ -268,7 +286,7 @@ No self-attested approval, circular hash or automatic promotion.
 | schema.sql | e1feebaf8b6cdce323fd4c7b95bdd08c2d1b0907f9d43f673e3cfd1933f6542a |
 | SCOPE-PROPOSAL.md | 05bca2caf5de0f057c67e9711de68dbaa0aafcb1aa8e700540b7b87d8a66cf01 |
 | SNAP-P01-DECISION.md | 017391c0fce1b9083c1b62a69ef9299615a8678752a4b98bd6cbc329eb16c048 |
-| SNAP-P02-DECISION.md | 4fd014978a5f95a8e000f245facbee80513ed8796f859d22839f83d436fab094 |
+| SNAP-P02-DECISION.md | 0151f8fae5f5458fcee80d53162690abab241219a7210eeed691b5e224cd0822 |
 | SNAP-P03-DECISION.md | 231abfc8be9af885f41cf48362d44dfd41feee7b91b6f67e92126efe1cc9dbd6 |
 | SNAP-P04-DECISION.md | 8af1937c93d0583f9bdceb82802ee62c448738e8828805c9d3fa1646c5169fee |
 | SNAP-P05-DECISION.md | e8ee7ac701eeedddf6ee1b7e7e1ba2ff39f1107c3e19b62afafc43b56cf91e36 |
@@ -279,6 +297,6 @@ No self-attested approval, circular hash or automatic promotion.
 | TRANSPORT-AND-CONNECTED-VALIDATION.md | 9958e1c00cce10a4461fd7606bbea4022e278917714080b7322c09480e8ca69e |
 | TRANSPORT-CONTAINMENT-DECISION.md | d120ffa4f56e956a0943b9f0e5d5f11ac17622da514e93f9d27ead549135bce1 |
 | WORKER-CONTROLLER-CONTRACT.md | e50755da4c4cd516ef0baf3acc3e86529135ca1dc025437002b029b5dccee48b |
-| IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | c7e76a320284046ec06b996b3786ffbb4d1e3e9701b7d5d2728b1d681503024c |
-| IR-P02-VECTOR-REVIEW-HANDOFF.md | f679b57f1bb6c172b2d7cff1d2674ef4efb904b46113f309754c006eac0a071d |
+| IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | 38af11cd8eb787e1906acbc91490937509c1e59cfce31c72aa1f2bdecb82213c |
+| IR-P02-VECTOR-REVIEW-HANDOFF.md | ac21830b464f16e7eee9bd025162935b8fc22786bf017c8ea849cb7bb0cb9524 |
 <!-- ARTIFACTS-END -->
