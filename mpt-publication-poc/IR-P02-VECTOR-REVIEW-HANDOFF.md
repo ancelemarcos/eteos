@@ -1,4 +1,4 @@
-# IR-P02 independent vector review handoff - current order v3.2
+# IR-P02 independent vector review handoff - targeted correction after recheck v3.3
 
 READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. Review request only, not an independent
 review certificate. Reviewer/signature UNRESOLVED; assessment REQUIRES_REVIEW.
@@ -10,7 +10,7 @@ Earlier opinions and candidate implementation outputs are not normative proof.
 
 | Role | File | SHA-256 |
 | --- | --- | --- |
-| Target and frame worksheet | IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | c7e76a320284046ec06b996b3786ffbb4d1e3e9701b7d5d2728b1d681503024c |
+| Target and frame worksheet | IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | 38af11cd8eb787e1906acbc91490937509c1e59cfce31c72aa1f2bdecb82213c |
 | Proposed byte contract | FULL-SNAPSHOT-CONTRACT.md | 0327a68f911db4e5271589e63d1e7522f268242da8618863570b58c325778c5d |
 | Exact schema inventory | runner/snapshot_schema.json | 1e64e5e28444b41f4e9bad62db930286810cb62c7769f243a45566d8eb47017a |
 | Candidate DDL, static context | schema.sql | e1feebaf8b6cdce323fd4c7b95bdd08c2d1b0907f9d43f673e3cfd1933f6542a |
@@ -31,3 +31,5 @@ historical approved/consumed @1 semantics, coverage beyond equal-length ASCII ke
 observed rejection behavior. Compatibility UNRESOLVED; no automatic @2.
 No Python/SQL/tests/runner/database/capsule or428-slot generation/freeze/comparison is
 authorized. Do not promote gates or treat hashes as functional validation.
+
+Targeted follow-up: independently derive D-NAME, D-TYPE, D-PK-ORDER and D-EXTRA in the newest vector supplement. Recheck offsets524,176..179,567 and extra stream200/combined1710 bytes against original contract/schema. Earlier only-specified labels are historical. These are documentary expectations, not observed rejection or human approval.

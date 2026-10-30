@@ -1,5 +1,86 @@
 # IR-P02 manual multirow vectors - order v2.9 / candidate0.26
 
+## Targeted documentary correction after independent recheck v3.3
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. All cases WIRE_ONLY_SYNTHETIC.
+This section completes four previously generic mutations using exact expandable inputs.
+Earlier ONLY SPECIFIED statements describe the pre-correction versions, not current coverage.
+No executable fixture, runtime rejection, relational validity or independent approval claimed.
+Definitions V,Na,Sa,Sp,Sb,Sc,C0,R0,G,U below retain their exact earlier meanings.
+All offsets are zero-based, inclusive, local to the indicated stream unless stated otherwise.
+
+### D-NAME - changed non-key column name, empty batch
+
+Input = V || Na || Sa-name || C0 || R0, exactly615 bytes.
+Sa-name is Sa with only its last group replaced by G(state_versioN,bigint,0).
+All preceding ten groups and PKa remain identical. Literal new name UTF-8:
+73 74 61 74 65 5f 76 65 72 73 69 6f 4e (13 bytes).
+Last group starts503: F(c) header503..511, name512..524, F(t)525..539,
+F(b)540..549. Change only stream byte524 from6e to4e.
+Name frame22 bytes, group47, schema payload530/total539 unchanged.
+Oracle: reject exact bound-schema name mismatch. No PK or scalar-row inconsistency is
+needed; count0 and empty container avoid a second error caused by data values.
+
+### D-TYPE - changed canonical type, empty batch
+
+Input = V || Na || Sa-type || C0 || R0, exactly615 bytes.
+Sa-type is Sa with only third group G(domain_id,text,0) replaced by
+G(domain_id,xid8,0). Name9/type4/flag1 payload lengths unchanged; group41.
+Third group starts149; name frame149..166; type header167..175, payload176..179.
+Replace type payload74 65 78 74 (text) with78 69 64 38 (xid8).
+Exact new type frame =74 0000000000000004 78696438,13 bytes.
+Schema payload530 and all later offsets unchanged. Both names are supported canonical
+types; oracle rejects bound-schema type mismatch, not an unknown-type shortcut.
+No row data supplied; this is not an SQL type migration.
+
+### D-PK-ORDER - reversed composite descriptor key, empty batch
+
+Input = V || Na || Sa-pk || C0 || R0, exactly615 bytes.
+Sa-pk retains all eleven original groups and replaces only PKa with:
+70 0000000000000025 ||
+63 0000000000000008 || U("batch_id") ||
+63 000000000000000b || U("position_id").
+U("batch_id")=62 61 74 63 68 5f 69 64 (8 bytes);
+U("position_id")=70 6f 73 69 74 69 6f 6e 5f 69 64 (11 bytes).
+F(p) payload17+20=37,total46 unchanged. Absolute p frame550..595:
+header550..558, first c header559..567/payload568..575,
+second c header576..584/payload585..595.
+Original first key was position_id; first changed byte567 is0b->08.
+Oracle: reject declared PK-order mismatch against (position_id,batch_id), even with
+no rows and both key names present. Not a duplicate-value or malformed-frame case.
+
+### D-EXTRA - complete, structurally valid fifth table stream
+
+Use the actual publication_domain schema (runner/snapshot_schema.json first table).
+It is a base table already in the30-table inventory but NOT in the four metadata tables.
+Two columns in order: domain_id:text NOT NULL, policy_version:text NOT NULL; PK domain_id.
+No new table or schema change introduced. Empty rows, wire structural validity only.
+
+Ndomain=74 000000000000001a || U("mpt_poc.publication_domain"):26 payload,35 total.
+Gdomain=63 0000000000000009 || U("domain_id") ||
+74 0000000000000004 || U("text") || 62 0000000000000001 30:18+13+10=41.
+Gpolicy=63 000000000000000e || U("policy_version") ||
+74 0000000000000004 || U("text") || 62 0000000000000001 30:23+13+10=46.
+U("policy_version")=70 6f 6c 69 63 79 5f 76 65 72 73 69 6f 6e.
+PKdomain=70 0000000000000012 ||63 0000000000000009||U("domain_id"):27 total.
+Sdomain=73 0000000000000072 || Gdomain||Gpolicy||PKdomain:
+payload41+46+27=114 (hex72),total123.
+Extra=V||Ndomain||Sdomain||C0||R0:23+35+123+10+9=200 bytes.
+Within Extra: v0..22,t23..57,s58..180,c181..190,r191..199.
+Within s: Gdomain67..107,Gpolicy108..153,PKdomain154..180 (absolute stream offsets).
+
+Negative metadata input = P0 || B0 || A0-vector || C0-vector || Extra:
+253+206+615+436+200=1710 bytes. Extra occupies metadata1510..1709.
+All five names are sorted, all individual descriptors/counts/frames are coherent, and none
+is duplicated. The fifth stream's first byte at1510 is76; a four-stream message must end
+at1509. Oracle: reject extra metadata member, not ordering/truncation/unknown schema.
+Optional same mutation on two-row metadata: P2||B2||A2||C2-vector||Extra=2237 bytes;
+Extra starts2037. No observed acceptance/rejection or experimental digest calculated.
+
+Review scope: these are manual expansions for renewed independent inspection, not a claim
+that the external review has accepted them. Historical@1 remains UNRESOLVED; no @2.
+
+
 ## Order v3.2 - focused manual adversarial supplement
 
 READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN; PROPOSED / REQUIRES_REVIEW.

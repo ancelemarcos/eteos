@@ -1,5 +1,34 @@
 # Review notes - candidate 0.10 / order v0.8
 
+## Targeted corrections following independent recheck IR-P02 v3.3
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. Input74 files/all73 hashes verified.
+Input MANIFESTed9b39027ba10be8f7fea1318a35214c85e738fa13c4dd761cba638a8d5793f4;
+HEAD27b2db3e3818e4325e5cd3df27f4ba1bc797ab15.
+Read full user-supplied files_ETEOS-MPT-IR-P02-INDEPENDENT-RECHECK-v3.3.md,
+SHA256ebf30da7a41899c0c6332eecec745cb37e16465eafc5eba96f1f99e32e6e12d9.
+Report does not constitute authenticated human approval. External Git state was not inspected.
+
+Six documents modified; zero created;68 preserved;74 total.
+IR-P02-MULTIROW-INDEPENDENT-VECTORS: prepend four exact manual negatives, including
+three615-byte empty-batch descriptor mutations and a200-byte publication_domain stream
+appended to four empty streams, total1710. Offsets and expected rejection reasons included.
+SNAP-P02-DECISION: scope two untracked statements to local path/HEAD/worktree observation,
+not the tracked external audit checkout. No claim the commit alone proves untracked state.
+EXPECTED-DECISION-PACKAGE: report provenance/disposition and refreshed H02.
+IR-P02-VECTOR-REVIEW-HANDOFF: updated target hash and targeted review instructions.
+REVIEW-NOTES and MANIFEST: change inventory and final bindings.
+Older generic-negative/ONLY SPECIFIED statements remain historical; new exact definitions
+are the current supplement. No prior external conclusion rewritten as independent approval.
+
+No contract/DDL/schema/code/test/fixture/SNAP-P03 changes; lifecycle and eight NOT_RUN
+negatives preserved. All additions WIRE_ONLY_SYNTHETIC, no relational/MVCC/execution proof.
+Historical snapshot evidence and v3.1 report remain external gaps. @1 UNRESOLVED; no @2.
+No Python/SQL/tests/runner/database/capsule/controller,428-slot generation/review/freeze/
+comparison, commit, ZIP or gate promotion. EXEC-G1/PERS-G1 OPEN; PUB-T13B/SNAP/API pending;
+ARCH-ADAPT-001 PROPOSED; A0/fail-closed; all three phases NOT_AUTHORIZED.
+
+
 ## Order v3.2 - focused static triage
 
 READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. Input HEAD
