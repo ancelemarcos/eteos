@@ -1,5 +1,76 @@
 # Human deliberation record - candidate 0.23 / order v2.1
 
+## Order v3.2 - focused F1-F5 disposition
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. The full external v3.1 report was not
+located among current repository/attachment filenames; only the older resultado.md was
+available. This matrix addresses F1-F5 as explicitly described by order v3.2. Verbatim
+auditor claims and their eight-mutation grouping require that report; no content invented.
+Evidence references below refer to exact INPUT v3.0 files/line numbers and hashes, not
+silently to shifted post-edit lines. Current bindings are in MANIFEST and H12 below.
+
+| Finding | Evidence / classification | Exact documentary action / remaining evidence |
+| --- | --- | --- |
+| F1 provenance | Input vectors:9,99; MANIFEST:6,25; REVIEW-NOTES:7,32; distinct stages, no contradictory identity demonstrated | Stage table below; retain historical values. Full original adc/839 byte snapshots not available locally for new rehash |
+| F2 nullable flag | Contract:107-108; codec:141; reference:124-126; vector G definition; schema boolean nullable | Editorial clarification: ASCII0=NOT NULL and ASCII1=nullable, literal frames. No wire/version change; approval still pending |
+| F3 view | Contract:12,50,55-59,127; schema tables inventory; source map below | Deliberate base-table scope; binding exists as candidate code, not deployed evidence. No view inserted in JSON |
+| F4 adversarial coverage | Input vector v3.0 worksheet/equal-length boundary and negative list | Add manual UTF-8/length/prefix, non-key required NULL, length tampering, duplicate composite PK; annotate eight categories by derivation maturity. No experimental closure |
+| F5 history | SNAP-P02 historical evidence register | UNRESOLVED. No evidence of approved prior semantics/consumers; not PROVEN_ABSENT, not a reason to auto-select @2 |
+
+### F1 - roles of the three manifest hashes
+
+| SHA-256 | Declared role | Byte evidence available in this round |
+| --- | --- | --- |
+| adc65884b5514fa45a025dd4fae7a0ecc9fc3385848ebdaf39a3a3f03ee35ae9 | Output v2.8 / input v2.9; original vector provenance | Historical references and earlier tool result in this conversation; no separate original manifest byte snapshot located now |
+| 8394e0b73f1dae47749ec393290414f90b5c340c3bfd3e5e56b47def4e42af11 | Output v2.9 / input v3.0 recheck | Historical references and earlier tool result in this conversation; no separate original manifest byte snapshot located now |
+| 6702ef92cba4f712a0db553051b773acec5ad3075b9e5ec5e467e052ff4b65f6 | Output v3.0 / input this v3.2 | Actual input checkout MANIFEST rehashed; all73 listed artifacts matched |
+
+The original vector's adc reference and later worksheet's839 reference are scoped input
+records. Neither claims to be the final v3.0 manifest. The current manifest hash belongs
+outside its own bytes. No reference proven incorrect was replaced. Historical byte-level
+reverification remains limited where original snapshots are unavailable; never reconstruct
+them from excerpts or call the historical record authenticated independent proof.
+
+### F3 - source -> descriptor -> verification
+
+| Source | Descriptor / binding | Candidate verification and limit |
+| --- | --- | --- |
+| FULL-SNAPSHOT-CONTRACT:12,50,55-59,127 and schema.sql:829-834 |30 base tables; separate published_positions, eight named fields, PK position_id, /PUBLISHED version | Contract/source binding; no deployed catalog inspected |
+| runner/snapshot_schema.json:2-3 | contract and tables only;30 base tables, no views collection | expected_wire_review:164 enforces base inventory; deliberate scope, not lost view |
+| runner/snapshot_codec.py:227-233 | eight view names/types, nullable=false, PK position_id | rows_bytes:153 rejects unexpected NULL before serialization |
+| runner/snapshot_oracle.py:140-145 | separate matching eight-field view descriptor | relation rejects required NULL; same semantic premise, not independent approval |
+| runner/snapshot_reference.py:124-126,150-153 | decodes nullable bit and field types from wire | NULL rejection for false flag/PK; generic table parser alone does not bind approved view schema |
+| runner/expected_wire_review.py:139-147,219-230 | explicit eight-field schema passed to table parser under /PUBLISHED | exact descriptor/PK and recipe count checked against expected slots; not observed DB proof |
+| runner/snapshot_collector.py:271,399-429,458 | schema hash, table/view relation kind, separately approved viewdef_sha256, eight names/types, semantic false flags | authored checks of view definition/shape and read conversion; NOT_RUN, no approval or deployed identity demonstrated |
+
+Physical name lifecycle is consistent. No schema/DDL/descriptor renamed. SNAP-P03 remains
+byte-identical: conditional static nonnull proof, eight negatives NOT_RUN, deployment absent.
+Independent proof that reviewed source bytes were loaded and that actual DDL/view constraints
+match the approval remains missing. MPT snapshot identity does not establish MIR availableAt.
+
+### Input evidence hashes (before the documentary edits in this order)
+
+| Input file | SHA-256 |
+| --- | --- |
+| FULL-SNAPSHOT-CONTRACT.md | a6581f905501f73614ae4344bb40f100bfed654abfa2850b52f89fa788a75d10 |
+| runner/snapshot_schema.json | 1e64e5e28444b41f4e9bad62db930286810cb62c7769f243a45566d8eb47017a |
+| schema.sql | e1feebaf8b6cdce323fd4c7b95bdd08c2d1b0907f9d43f673e3cfd1933f6542a |
+| runner/snapshot_codec.py | bc493979eaddcaa4a168d5a5366e3dddf05a3883390869bdbac073cfa2dae6c6 |
+| runner/snapshot_oracle.py | 097835f23ff0da42e413abffe57bfb44e21a7e1c49afb13dea0c0182bc81a172 |
+| runner/snapshot_reference.py | 3bde406558c2ae1bfc47a82c6df3817d252ab0d61128386728bce20ea037af0e |
+| runner/expected_wire_review.py | 87b1c7b80d460ceea420651f59812b77b3590b689511dc587492dc1c801f72f3 |
+| runner/snapshot_collector.py | 513b3221c49423875e42b4ba604a172015d32d8cff1d70b74afb9eb45d4c1cc8 |
+| IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | 3526aa1093d9eb95cc33c0d9bdcc6a16b3542c675f0ceb95c1d79146f758287d |
+| MANIFEST.md | 6702ef92cba4f712a0db553051b773acec5ad3075b9e5ec5e467e052ff4b65f6 |
+| REVIEW-NOTES.md | 4de5ff16659cdf05fd683e5aadb6baa260c95f84117f07d830b9e8d016d4463a |
+
+Pending owners: domain contract reviewer for semantic/version disposition, independent codec
+reviewer for new manual expansions/negative scope, environment owner for future deployed
+evidence. Identities/approvals UNRESOLVED. No patches executable, Python/SQL/tests/runner,
+428-slot output, commit, ZIP, signature/freeze or promotion. EXEC-G1/PERS-G1 OPEN;
+PUB-T13B/SNAP/API pending, ARCH-ADAPT-001 PROPOSED, A0 and all three phases NOT_AUTHORIZED.
+
+
 ## Order v2.9 - current manual vector review handoff
 
 READY_FOR_INDEPENDENT_VECTOR_REVIEW / NOT_RUN, PROPOSED, not a gate promotion.
@@ -436,7 +507,7 @@ review updated provenance and bind the final external manifest. No assembly is a
 | H09 | runner/snapshot_schema.json | 1e64e5e28444b41f4e9bad62db930286810cb62c7769f243a45566d8eb47017a |
 | H10 | schema.sql | e1feebaf8b6cdce323fd4c7b95bdd08c2d1b0907f9d43f673e3cfd1933f6542a |
 | H11 | SNAPSHOT-INTERPRETATION-REVIEW.md | 0e56704abe70a6c4f0f59b19240a4d97e6b3cd07cdcc0a262934d54b1b81d9c9 |
-| H12 | FULL-SNAPSHOT-CONTRACT.md | a6581f905501f73614ae4344bb40f100bfed654abfa2850b52f89fa788a75d10 |
+| H12 | FULL-SNAPSHOT-CONTRACT.md | 0327a68f911db4e5271589e63d1e7522f268242da8618863570b58c325778c5d |
 
 Final MANIFEST inventories all artifacts including this document; its external hash is reported
 separately to avoid circular self-binding. Human record must reference the final packet hash

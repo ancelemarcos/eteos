@@ -1,5 +1,32 @@
 # Review notes - candidate 0.10 / order v0.8
 
+## Order v3.2 - focused static triage
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. Input HEAD
+27b2db3e3818e4325e5cd3df27f4ba1bc797ab15;74 files/all73 artifact hashes matched;
+input MANIFEST6702ef92cba4f712a0db553051b773acec5ad3075b9e5ec5e467e052ff4b65f6.
+Full external v3.1 report not located; request for its path remains outstanding. Scope is the
+explicit F1-F5 descriptions in order v3.2, not an invented transcript of auditor findings.
+Six documentary files modified, zero created,68 preserved:
+FULL-SNAPSHOT-CONTRACT.md (ASCII nullable mapping/literal frames only);
+IR-P02-MULTIROW-INDEPENDENT-VECTORS.md (manual adversarials and negative maturity);
+EXPECTED-DECISION-PACKAGE.md (F1-F5 matrix, source/line/input-hash evidence, view map, H12);
+IR-P02-VECTOR-REVIEW-HANDOFF.md (current review scope and refreshed primary hashes);
+REVIEW-NOTES.md and MANIFEST.md (provenance and integrity).
+F1 different-stage hashes retained; current input670 verified from bytes, historical adc/839
+original byte snapshots not located for new rehash. F2 semantic mapping already present,
+clarified editorially. F3 view descriptors/bindings exist in code separately from30 base
+tables; runtime/deployed proof absent. F4 manual UTF-8/prefix/length/null/tampering/composite
+cases added; not executable fixtures. Most earlier mutations are expandable transformations;
+extra fifth stream and general type/name/PK descriptor variants remain only specified.
+F5 historical approved/consumed@1 UNRESOLVED; no @2 chosen.
+No candidate numeric wire digest or428-slot result calculated. New expressions are synthetic
+wire only, not SQL/FK/MVCC-valid evidence. Independent review/authentication remains missing.
+SNAP-P03/DDL/schema/sources/tests unchanged; lifecycle and eight NOT_RUN negatives preserved.
+All gates/phase restrictions unchanged; no experimental execution, commit, ZIP or signature.
+Historical status/line/hash records retain their original round scope; final hashes in MANIFEST.
+
+
 ## Order v3.0 - focused static vector review handoff
 
 READY_FOR_INDEPENDENT_VECTOR_REVIEW / NOT_RUN. HEAD

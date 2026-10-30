@@ -106,6 +106,9 @@ Sort rows by unsigned lexicographic PK bytes (not SQL locale/numeric ordering); 
 PK bytes. This sort may put version10 before version2; canonical identity, not event chronology.
 Schema descriptor = F(s,for each column: F(c,name UTF-8)+F(t,canonical PostgreSQL type name)
 +F(b,ASCII nullable 0/1), followed by F(p,concatenated F(c,PK column name))).
+Order v3.2 proposed clarification: ASCII '0' = NOT NULL; ASCII '1' = nullable.
+The exact flag frames are 62 0000000000000001 30 and 62 0000000000000001 31,
+respectively (one payload byte, ten total bytes). No descriptor bytes or version change.
 Use exact type names text, boolean, integer, bigint, numeric, timestamp with time zone, xid8,
 jsonb as declared, not unstable OIDs. Descriptor values validated from manifest-bound DDL.
 

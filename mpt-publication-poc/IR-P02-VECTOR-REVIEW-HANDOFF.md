@@ -1,6 +1,6 @@
-# IR-P02 independent vector review handoff - order v3.0
+# IR-P02 independent vector review handoff - current order v3.2
 
-READY_FOR_INDEPENDENT_VECTOR_REVIEW / NOT_RUN. Review request only, not an independent
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN. Review request only, not an independent
 review certificate. Reviewer/signature UNRESOLVED; assessment REQUIRES_REVIEW.
 
 ## Exact primary material
@@ -10,14 +10,14 @@ Earlier opinions and candidate implementation outputs are not normative proof.
 
 | Role | File | SHA-256 |
 | --- | --- | --- |
-| Target and frame worksheet | IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | 3526aa1093d9eb95cc33c0d9bdcc6a16b3542c675f0ceb95c1d79146f758287d |
-| Proposed byte contract | FULL-SNAPSHOT-CONTRACT.md | a6581f905501f73614ae4344bb40f100bfed654abfa2850b52f89fa788a75d10 |
+| Target and frame worksheet | IR-P02-MULTIROW-INDEPENDENT-VECTORS.md | c7e76a320284046ec06b996b3786ffbb4d1e3e9701b7d5d2728b1d681503024c |
+| Proposed byte contract | FULL-SNAPSHOT-CONTRACT.md | 0327a68f911db4e5271589e63d1e7522f268242da8618863570b58c325778c5d |
 | Exact schema inventory | runner/snapshot_schema.json | 1e64e5e28444b41f4e9bad62db930286810cb62c7769f243a45566d8eb47017a |
 | Candidate DDL, static context | schema.sql | e1feebaf8b6cdce323fd4c7b95bdd08c2d1b0907f9d43f673e3cfd1933f6542a |
 
 ## Bounded review questions
 
-Use the target's v3.0 offset/descriptor/row worksheet and original field expansions.
+Use the target's v3.2 adversarials and negative-maturity table, v3.0 worksheet and original expansions.
 Independently expand ASCII literals, F(p) frames, nullable/type fields, scalar/count/row
 frames and framed-PK order. Check1510/2037 both by stream sums and527 added row bytes.
 Return exact frame/offset/stated-versus-expected bytes for any discrepancy, or a bounded
