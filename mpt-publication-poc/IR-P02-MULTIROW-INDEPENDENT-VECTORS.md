@@ -1,5 +1,89 @@
 # IR-P02 manual multirow vectors - order v2.9 / candidate0.26
 
+## Order v3.2 - focused manual adversarial supplement
+
+READY_FOR_FOCUSED_INDEPENDENT_RECHECK / NOT_RUN; PROPOSED / REQUIRES_REVIEW.
+All new cases below are WIRE_ONLY_SYNTHETIC. No SQL/FK/publication/MVCC validity is claimed.
+Earlier v3.0 classifications and equal-length limitations describe the earlier case set.
+The rules are from the proposed contract/schema, never generated codec/oracle expectations.
+No428-slot population, numeric digest, runtime result or authenticated independent review.
+
+### A-UTF8-LENGTH-PREFIX: exact supplementary alphabet and keys
+
+For this section extend U with U("é")=c3 a9 (U+00E9, exactly2 UTF-8 bytes, not decomposed).
+U("a")=61, U("b")=62, U("aa")=61 61. No Unicode normalization.
+Ta=54 0000000000000001 61; Tb substitutes62 (payload1,total10).
+Taa=54 0000000000000002 61 61; Te=54 0000000000000002 c3 a9 (payload2,total11).
+For publication_barrier, each row is F(r,text scalar || I(0)), with I(0) as defined below.
+Ra=72 0000000000000014 || Ta || I(0), Rb substitutes Tb:payload20,total29.
+Raa=72 0000000000000015 || Taa || I(0), Re substitutes Te:payload21,total30.
+Ka=6b 000000000000000a || Ta, Kb substitutes Tb:payload10,total19.
+Kaa=6b 000000000000000b || Taa, Ke substitutes Te:payload11,total20.
+Unsigned framed-key order is Ka,Kb,Kaa,Ke: header length0a precedes0b, so b precedes aa,
+although payload-only lexicographic order would put aa before b. Within equal11-byte
+payloads,61 precedes c3. a is a prefix of aa but their complete frames are distinct.
+C4=63 0000000000000001 34; R4=72 0000000000000076 || Ra||Rb||Raa||Re:
+payload29+29+30+30=118,total127. Stream=V||Nb||Sb||C4||R4:
+23+36+128+10+127=324 bytes. All referenced components are defined exactly in this document.
+Positive: supplied rows [Re,Raa,Rb,Ra] yield this same canonical stream.
+Negative: serialized Ra||Raa||Rb||Re with unchanged C4/R4 headers rejects noncanonical
+framed-key order. This covers selected multibyte/length/prefix cases, not all Unicode.
+
+### A-NULL-NONKEY: SQL NULL in a required non-key field
+
+Use batch A2 (AA,AB) below. Replace only AA.state_version I(0) with
+N=4e 0000000000000000. Keep schema nullable flag0 and the two distinct composite PKs.
+AA-null=72 000000000000006b || T(A)||T(A)||T(D)||T(O)||T(I)||T(F)||T(S)
+||N||N||B(false)||N:payload70+9+9+10+9=107,total116.
+Container=72 00000000000000e9 || AA-null||AB:payload116+117=233,total242.
+Stream=V||Na||Sa||C2||container:23+34+539+10+242=848.
+Expected reject: state_version is NOT NULL, even though lengths/count/PKs are coherent.
+This is a descriptor/nullability counterexample, not a claim about SQL insertion.
+
+### A-LENGTH: inconsistent declared lengths, unchanged actual payloads
+
+Use B2, total264 bytes, with zero-based offsets local to that table stream.
+Container starts197; change only byte205 from3a to3b (declared58 to59), append no byte.
+Expected reject: outer payload extends beyond actual stream. Physical length remains264.
+Separately, restore3a and change only byte214 from14 to15 in BD row header (20 to21).
+Actual BD scalar bytes remain20; parser would consume the next row tag as extra row payload.
+Expected reject: row/scalar framing or row-width inconsistency. No silent recovery.
+These single-byte mutations do not correct enclosing lengths to hide the defect.
+
+### A-COMPOSITE-DUPLICATE: exact two-component duplicate
+
+Use A2. Replace only AB's second scalar T(B) with T(A), obtaining AA a second time.
+Both row headers remain72 000000000000006c. Container remains
+72 00000000000000ea || AA||AA, count C2, stream length849 unchanged.
+Both keys are6b 0000000000000014 || T(A)||T(A). Reject duplicate entire PK.
+By contrast original AA/AB share position_id but have different batch_id and are admissible
+for this wire-only key rule. Non-PK differences never rescue duplicate PK identity.
+
+### Existing negatives: derivation maturity, not experimental results
+
+The external v3.1 report was not located; these eight categories map the order to the
+actual pre-v3.2 local negative list, not to invented auditor wording or results.
+"Expandable" means an exact documentary byte transformation of a fully defined stream;
+no monolithic generated binary or experimental validation is claimed.
+
+| Category | Before v3.2 evidence | Current exact oracle / residual scope |
+| --- | --- | --- |
+| Duplicate PK | AA/AA replacement specified; full AA/key bytes already defined | Exact composite formula above; reject equal framed keys |
+| Count mismatch | C2->C0 specified with both literal count frames | B2 byte196:32->30, rows unchanged; reject count0 versus2 |
+| Missing/extra/duplicate stream | Omission/duplication named; fifth stream not derived | Omit B2 from combined2037 ->1773 bytes; append B2 ->2301; both reject inventory. Extra valid fifth-table bytes still ONLY SPECIFIED, not derived |
+| Invalid order | Swap P2/B2 or reverse PA/PB specified | Exact concatenations of defined streams/rows; reject wire order. Input permutation admitted. Added a,b,aa,é witness above |
+| Descriptor mismatch | Flag1->0 specified; type/name/PK variants generic | In P2 position_version nullable payload at offset158:31->30; reject bound-schema mismatch. Type/name/PK edits remain ONLY SPECIFIED |
+| Incompatible version | @1->@2 specified, equal length | Any normal stream byte22:31->32; reject @1 mismatch; no @2 selection |
+| Truncation / length | Remove last byte from C2-vector specified | C2-vector594->593, remove final32 of X(2), leave all headers; reject. Added exact container/row header mutations above |
+| Rows-only | Exact named row concatenation specified | PA||PB||BD||BE||AA||AB||CC||CE length527; reject missing required full streams |
+
+No original negative is represented as executed or authenticated independent review.
+Complete fifth-table negative and general descriptor type/name/PK mutations remain
+specifications, deliberately not silently filled using encoder/oracle outputs.
+
+Current v3.2 primary contract SHA256: 0327a68f911db4e5271589e63d1e7522f268242da8618863570b58c325778c5d.
+
+
 ## Order v3.0 - static recheck, worksheet and validity classification
 
 READY_FOR_INDEPENDENT_VECTOR_REVIEW / NOT_RUN. Author-side recheck, not authenticated
