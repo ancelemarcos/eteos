@@ -1,0 +1,246 @@
+{
+  "contract": "MPT-SNAPSHOT@1",
+  "status": "MATERIALIZED_NOT_RUN",
+  "provenance": "Manually derived frame bytes from F(tag,payload); not produced by either Python implementation; no executed result hashes.",
+  "vectors": [
+    {
+      "id": "NULL",
+      "sql_type": "text",
+      "input": {
+        "kind": "sql-null"
+      },
+      "hex": "4e0000000000000000",
+      "decoded": [
+        "sql-null"
+      ]
+    },
+    {
+      "id": "TEXT-EMPTY",
+      "sql_type": "text",
+      "input": {
+        "kind": "text",
+        "value": ""
+      },
+      "hex": "540000000000000000",
+      "decoded": [
+        "text",
+        ""
+      ]
+    },
+    {
+      "id": "TEXT-A",
+      "sql_type": "text",
+      "input": {
+        "kind": "text",
+        "value": "A"
+      },
+      "hex": "54000000000000000141",
+      "decoded": [
+        "text",
+        "A"
+      ]
+    },
+    {
+      "id": "TEXT-UTF8",
+      "sql_type": "text",
+      "input": {
+        "kind": "text",
+        "value": "é"
+      },
+      "hex": "540000000000000002c3a9",
+      "decoded": [
+        "text",
+        "é"
+      ]
+    },
+    {
+      "id": "BYTES-EMPTY",
+      "sql_type": "bytea",
+      "input": {
+        "kind": "hex",
+        "value": ""
+      },
+      "hex": "590000000000000000",
+      "decoded": [
+        "bytes-hex",
+        ""
+      ]
+    },
+    {
+      "id": "BOOL-FALSE",
+      "sql_type": "boolean",
+      "input": {
+        "kind": "bool",
+        "value": false
+      },
+      "hex": "42000000000000000130",
+      "decoded": [
+        "boolean",
+        false
+      ]
+    },
+    {
+      "id": "INT-NEG1",
+      "sql_type": "bigint",
+      "input": {
+        "kind": "int",
+        "value": "-1"
+      },
+      "hex": "4900000000000000022d31",
+      "decoded": [
+        "integer",
+        -1
+      ]
+    },
+    {
+      "id": "XID1",
+      "sql_type": "xid8",
+      "input": {
+        "kind": "int",
+        "value": "1"
+      },
+      "hex": "58000000000000000131",
+      "decoded": [
+        "xid8",
+        1
+      ]
+    },
+    {
+      "id": "NUM-SCALE2",
+      "sql_type": "numeric",
+      "input": {
+        "kind": "decimal",
+        "value": "1.00"
+      },
+      "hex": "4400000000000000053130303a32",
+      "decoded": [
+        "numeric",
+        100,
+        2
+      ]
+    },
+    {
+      "id": "NUM-SCALE1",
+      "sql_type": "numeric",
+      "input": {
+        "kind": "decimal",
+        "value": "1.0"
+      },
+      "hex": "44000000000000000431303a31",
+      "decoded": [
+        "numeric",
+        10,
+        1
+      ]
+    },
+    {
+      "id": "NUM-NEGZERO",
+      "sql_type": "numeric",
+      "input": {
+        "kind": "decimal",
+        "value": "-0.00"
+      },
+      "hex": "440000000000000003303a32",
+      "decoded": [
+        "numeric",
+        0,
+        2
+      ]
+    },
+    {
+      "id": "TS-MICRO1",
+      "sql_type": "timestamp with time zone",
+      "input": {
+        "kind": "microseconds",
+        "value": "1"
+      },
+      "hex": "5a000000000000000131",
+      "decoded": [
+        "timestamp-micros",
+        1
+      ]
+    },
+    {
+      "id": "TS-NEG1",
+      "sql_type": "timestamp with time zone",
+      "input": {
+        "kind": "microseconds",
+        "value": "-1"
+      },
+      "hex": "5a00000000000000022d31",
+      "decoded": [
+        "timestamp-micros",
+        -1
+      ]
+    },
+    {
+      "id": "JSON-NULL",
+      "sql_type": "jsonb",
+      "input": {
+        "kind": "stored-json",
+        "value": "null"
+      },
+      "hex": "4a00000000000000096e0000000000000000",
+      "decoded": [
+        "jsonb",
+        [
+          "json-null"
+        ]
+      ]
+    },
+    {
+      "id": "JSON-EMPTY-ARRAY",
+      "sql_type": "jsonb",
+      "input": {
+        "kind": "stored-json",
+        "value": "[]"
+      },
+      "hex": "4a0000000000000009610000000000000000",
+      "decoded": [
+        "jsonb",
+        [
+          "json-array",
+          []
+        ]
+      ]
+    },
+    {
+      "id": "JSON-EMPTY-OBJECT",
+      "sql_type": "jsonb",
+      "input": {
+        "kind": "stored-json",
+        "value": "{}"
+      },
+      "hex": "4a00000000000000096f0000000000000000",
+      "decoded": [
+        "jsonb",
+        [
+          "json-object",
+          []
+        ]
+      ]
+    }
+  ],
+  "reject_vectors": [
+    {
+      "id": "TRUNCATED",
+      "hex": "54000000000000000241",
+      "error": "truncated payload"
+    },
+    {
+      "id": "NULL-PAYLOAD",
+      "hex": "4e000000000000000178",
+      "error": "invalid scalar"
+    },
+    {
+      "id": "NONCANONICAL-INT",
+      "hex": "4900000000000000023031",
+      "error": "noncanonical integer"
+    },
+    {
+      "id": "INVALID-UTF8",
+      "hex": "540000000000000001ff",
+      "error": "UnicodeDecodeError"
+    }
+  ]
+}

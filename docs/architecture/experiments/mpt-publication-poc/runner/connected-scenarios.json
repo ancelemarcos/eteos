@@ -1,0 +1,97 @@
+{
+  "contract": "MPT-CONNECTED-CANDIDATE@1",
+  "status": "MATERIALIZED_NOT_RUN",
+  "not_run": true,
+  "cases": [
+    {
+      "id": "MVCC-UPDATE",
+      "checkpoint": "C1 observer snapshot established; C2 writer commits B replacing approved A; C3 observer scans",
+      "oracle": "observer_state=A; new_observer_state=B",
+      "evidence": "observer snapshot ID; writer commit acknowledgement; complete rows before/after",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "SCHEMA-DRIFT",
+      "checkpoint": "C0 isolated fixture schema column differs before observer BEGIN",
+      "oracle": "no_result=true; rejection_stage=catalog",
+      "evidence": "approved vs observed schema identity",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "VIEW-DRIFT",
+      "checkpoint": "C0 view definition differs before BEGIN",
+      "oracle": "no_result=true; rejection_stage=view",
+      "evidence": "expected and observed definition hashes",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "PRIVILEGE-DRIFT",
+      "checkpoint": "C0 inject one direct/PUBLIC/inherited grant per isolated case",
+      "oracle": "no_result=true; rejection_stage=privilege",
+      "evidence": "role closure and exact ACL before/after",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "OWNER-SUPER",
+      "checkpoint": "C0 try owner then superuser as two independent cases",
+      "oracle": "no_result=true; rejection_stage=privilege",
+      "evidence": "observed login/role flags; no data return",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "CANCEL-IGNORED",
+      "checkpoint": "C2 request cancellation while driver is blocked; ignore response in adversarial case",
+      "oracle": "no_result=true; deadline_enforced=true; session_quarantined=true",
+      "evidence": "call deadline; cancellation acknowledgement or absence; independent session termination evidence",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "PARTIAL-READ",
+      "checkpoint": "C2 drop a row or add/remove a field in separately instrumented transport",
+      "oracle": "no_result=true; rejection_stage=completeness",
+      "evidence": "same-MVCC count, row width, end-of-stream marker",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "CONVERSION",
+      "checkpoint": "C2 inject float numeric / fractional timestamp / invalid Unicode / excessive JSON or Decimal",
+      "oracle": "no_result=true; rejection_stage=conversion",
+      "evidence": "type-only input description and error class; no sensitive payload",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "CLEANUP-FAILURE",
+      "checkpoint": "C2 fail collection; C4 fail rollback and close independently and together",
+      "oracle": "no_result=true; primary_preserved=true; cleanup_errors_retained=true",
+      "evidence": "primary type, both cleanup types, external unresolved-session register",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    },
+    {
+      "id": "RESOURCE-LIMITS",
+      "checkpoint": "C2 boundary and boundary+1 column/row/batch/table/total/native buffer; slow call",
+      "oracle": "no_result=true for over-budget cases; deadline_enforced=true",
+      "evidence": "native high-water measurements; deterministic injected sizes; frozen limits",
+      "status": "MATERIALIZED_NOT_RUN",
+      "external_dependency": "approved isolated PostgreSQL, dedicated reader, writer/admin fixture capability where required, verified transport",
+      "cleanup": "C4 attempt rollback and close on dedicated sessions; preserve original and cleanup errors; no DROP/kill by this harness; unresolved sessions quarantine externally"
+    }
+  ]
+}
