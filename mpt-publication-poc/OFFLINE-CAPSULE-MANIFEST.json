@@ -1,0 +1,158 @@
+{
+  "spec": "MPT-OFFLINE-CAPSULE@1",
+  "candidate": "0.20",
+  "state": "DOCUMENTED",
+  "assembled": false,
+  "executed": false,
+  "files": [
+    {
+      "destination": "snapshot_codec.py",
+      "source": "runner/snapshot_codec.py",
+      "sha256": "bc493979eaddcaa4a168d5a5366e3dddf05a3883390869bdbac073cfa2dae6c6"
+    },
+    {
+      "destination": "snapshot_reference.py",
+      "source": "runner/snapshot_reference.py",
+      "sha256": "3bde406558c2ae1bfc47a82c6df3817d252ab0d61128386728bce20ea037af0e"
+    },
+    {
+      "destination": "snapshot_oracle.py",
+      "source": "runner/snapshot_oracle.py",
+      "sha256": "097835f23ff0da42e413abffe57bfb44e21a7e1c49afb13dea0c0182bc81a172"
+    },
+    {
+      "destination": "test_snapshot_conformance.py",
+      "source": "runner/test_snapshot_conformance.py",
+      "sha256": "71bb75d035191e827c88cd07010e77b952365392af6e49673d41cf80dc4cd8cc"
+    },
+    {
+      "destination": "snapshot_schema.json",
+      "source": "runner/snapshot_schema.json",
+      "sha256": "1e64e5e28444b41f4e9bad62db930286810cb62c7769f243a45566d8eb47017a"
+    },
+    {
+      "destination": "snapshot_vectors.json",
+      "source": "runner/snapshot_vectors.json",
+      "sha256": "12ee250e42a8ba57eb3cd48b52293d5bc5478618ad0cf91e0f731d7b177928e6"
+    },
+    {
+      "destination": "snapshot_compound_vectors.json",
+      "source": "runner/snapshot_compound_vectors.json",
+      "sha256": "9261d75de4e0be8b85271225cd04367b3cd11cc8b4b41d917fb0736a50e3ab69"
+    },
+    {
+      "destination": "MANIFEST.md",
+      "source": "MANIFEST.md",
+      "sha256": "UNRESOLVED",
+      "binding": "Exact final candidate 0.20 external manifest SHA-256 reported in delivery; copy only after independent verification. Cannot embed self-referential hash in this manifest-bound descriptor."
+    }
+  ],
+  "closure": {
+    "state": "PENDING_HUMAN_APPROVAL",
+    "method": "Independent reviewer binds this descriptor hash and external final MANIFEST hash in external approval record before assembly; no wildcard or trust-on-first-use",
+    "capsule_digest": "UNRESOLVED"
+  },
+  "environment": {
+    "cpython_version": "UNRESOLVED",
+    "executable_sha256": "UNRESOLVED",
+    "stdlib_digest": "UNRESOLVED",
+    "os_build": "UNRESOLVED",
+    "network": "DENIED; enforcement evidence UNRESOLVED",
+    "user": "UNPRIVILEGED; identity UNRESOLVED",
+    "capsule": "READ_ONLY; enforcement evidence UNRESOLVED",
+    "evidence_output": "SEPARATE_BOUNDED_DIRECTORY; path/ACL UNRESOLVED",
+    "resource_enforcement": "UNRESOLVED; -I/recursion/post-allocation checks insufficient"
+  },
+  "imports": {
+    "local_allowed": [
+      "snapshot_codec.py",
+      "snapshot_reference.py",
+      "snapshot_oracle.py",
+      "test_snapshot_conformance.py"
+    ],
+    "stdlib": [
+      "hashlib",
+      "json",
+      "re",
+      "dataclasses",
+      "datetime",
+      "decimal",
+      "struct",
+      "unittest",
+      "pathlib"
+    ],
+    "excluded": [
+      "snapshot_collector",
+      "snapshot_transport_candidate",
+      "connected_snapshot_harness",
+      "run",
+      "psycopg"
+    ],
+    "review": "PENDING_HUMAN_APPROVAL; transitive stdlib graph must match pinned build"
+  },
+  "limits": {
+    "state": "PENDING_HUMAN_APPROVAL",
+    "file_bytes": 1048576,
+    "total_capsule_bytes": 8388608,
+    "rows_per_table": 3,
+    "total_rows": 90,
+    "published_rows": 3,
+    "scalar_bytes": 4096,
+    "json_depth": 16,
+    "json_nodes": 1024,
+    "decimal_digits": 128,
+    "decimal_absolute_exponent": 128,
+    "malformed_wire_bytes": 1048576,
+    "output_bytes": 8388608,
+    "recursion_limit_max": 1000,
+    "accounted_memory_bytes": 268435456,
+    "wall_seconds": 30,
+    "cleanup_seconds": 5
+  },
+  "tests": [
+    "CodecConformance.test_scalar_bytes_and_decoding",
+    "CodecConformance.test_nested_json_independent_bytes",
+    "CodecConformance.test_empty_multirow_order_and_corruption",
+    "CodecConformance.test_complete_empty_and_multiple_partitions",
+    "CodecConformance.test_rejections",
+    "CodecConformance.test_fully_populated_typed_snapshot",
+    "CodecConformance.test_oracle_negative_typed_values",
+    "CodecConformance.test_python_time_domain_without_postgresql_claim"
+  ],
+  "excluded_review_files": [
+    "expected-bundle.template.json",
+    "EXPECTED-BUNDLE-SPEC.md",
+    "EXPECTED-REVIEW-MATRIX.md",
+    "SNAPSHOT-INTERPRETATION-REVIEW.md",
+    "OFFLINE-CAPSULE-MANIFEST.json"
+  ],
+  "note": "Eight-member core unchanged; new candidate review tools and external expected artifact are NOT included. Proposed external host/interface requires human approval and separate execution authority. Existing dynamic tests remain provisional.",
+  "external_expected_proposal": {
+    "state": "PENDING_HUMAN_APPROVAL",
+    "path": "C:/mpt-offline-review/expected/reviewed-frozen.json",
+    "access": "READ_ONLY",
+    "sha256": "UNRESOLVED",
+    "core_member": false,
+    "tooling": [
+      "runner/expected_bundle_emitter.py",
+      "runner/frozen_bundle_compare.py",
+      "runner/test_expected_bundle_review.py",
+      "runner/expected_bounds.py",
+      "runner/expected_admission.py",
+      "runner/expected_wire_review.py"
+    ],
+    "approval": "External authenticated binding of final manifest, descriptor, bundle, sources, slots and interpretation IDs; no self approval",
+    "adapter": "UNRESOLVED: separately approved trusted host verifies loaded sources and supplies observer/authenticator"
+  },
+  "static_review": {
+    "state": "FIX_CANDIDATE / REQUIRES_HARDENING / NOT_RUN",
+    "findings": "EXPECTED-STATIC-REVIEW.md",
+    "external_contract": "EXPECTED-EXTERNAL-FREEZE-CONTRACT.md",
+    "authority": "Proposed external OAA; policy/people/implementation UNRESOLVED",
+    "loaded_identity": "Stable-handle byte and actual loaded-code proof required; not supplied by Python comparator",
+    "admission": "Default-deny interface only; real OAA/OS loader/monitor BLOCKED",
+    "compatibility": "Proposed incompatible admission API/report@2 and budget profile need human decision; wire/recipe unchanged",
+    "decision_package": "EXPECTED-DECISION-PACKAGE.md",
+    "migration": "EXPECTED-API-MIGRATION.md; EXPECTED-COUNTER-PROPOSAL.md; COUNTER-MIGRATION.patch is unapplied, BLOCKED_ON_API_APPROVAL. Code remains report@2."
+  }
+}

@@ -1,0 +1,679 @@
+{
+  "contract": "MPT-SNAPSHOT@1",
+  "status": "MATERIALIZED_NOT_RUN",
+  "method": "Independent manual frame arithmetic and declarative relational inputs; no encoder/reference execution. Hash oracles not independently calculated are UNRESOLVED.",
+  "review": "Independent human review and separately authorized comparison required",
+  "cases": [
+    {
+      "id": "TABLE-EMPTY",
+      "schema_table": "publication_domain",
+      "rows": [],
+      "expected": {
+        "frame_order": [
+          "v",
+          "t",
+          "s",
+          "c",
+          "r"
+        ],
+        "version_utf8_length": 14,
+        "qualified_name_utf8_length": 26,
+        "descriptor_payload_length": 114,
+        "total_bytes": 200,
+        "row_count": 0,
+        "table_sha256": "UNRESOLVED",
+        "bytes_expression": "F(v,\"MPT-SNAPSHOT@1\") || F(t,\"mpt_poc.publication_domain\") || F(s,F(c,\"domain_id\")||F(t,\"text\")||F(b,\"0\")||F(c,\"policy_version\")||F(t,\"text\")||F(b,\"0\")||F(p,F(c,\"domain_id\"))) || F(c,\"0\") || F(r,empty)",
+        "decoded_rows": []
+      },
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "F(v,\"MPT-SNAPSHOT@1\") || F(t,\"mpt_poc.publication_domain\") || F(s,F(c,\"domain_id\")||F(t,\"text\")||F(b,\"0\")||F(c,\"policy_version\")||F(t,\"text\")||F(b,\"0\")||F(p,F(c,\"domain_id\"))) || F(c,\"0\") || F(r,empty)",
+        "length": 200,
+        "decoded": [],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "PK-ADVERSARIAL",
+      "schema_table": "publication_domain",
+      "rows": [
+        {
+          "domain_id": "aa",
+          "policy_version": "1"
+        },
+        {
+          "domain_id": "b",
+          "policy_version": "1"
+        },
+        {
+          "domain_id": "a",
+          "policy_version": "1"
+        }
+      ],
+      "expected": {
+        "pk_order": [
+          "a",
+          "b",
+          "aa"
+        ],
+        "row_count": 3,
+        "reason": "F(k) length prefix sorts shorter text key frames before longer ones",
+        "table_sha256": "UNRESOLVED",
+        "total_bytes": 288,
+        "bytes_expression": "TABLE-EMPTY prefix through descriptor || F(c,\"3\") || F(r,F(r,F(T,\"a\")||F(T,\"1\"))||F(r,F(T,\"b\")||F(T,\"1\"))||F(r,F(T,\"aa\")||F(T,\"1\")))",
+        "decoded_rows": [
+          [
+            "text:a",
+            "text:1"
+          ],
+          [
+            "text:b",
+            "text:1"
+          ],
+          [
+            "text:aa",
+            "text:1"
+          ]
+        ]
+      },
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "TABLE-EMPTY prefix through descriptor || F(c,\"3\") || F(r,F(r,F(T,\"a\")||F(T,\"1\"))||F(r,F(T,\"b\")||F(T,\"1\"))||F(r,F(T,\"aa\")||F(T,\"1\")))",
+        "length": 288,
+        "decoded": [
+          [
+            "text:a",
+            "text:1"
+          ],
+          [
+            "text:b",
+            "text:1"
+          ],
+          [
+            "text:aa",
+            "text:1"
+          ]
+        ],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "NULL-VS-ABSENT",
+      "schema_table": "position_guard",
+      "rows": [
+        {
+          "position_id": "P-A",
+          "pending_close_command": null
+        }
+      ],
+      "absent_row": {
+        "position_id": "P-A"
+      },
+      "expected": {
+        "null_scalar_hex": "4e0000000000000000",
+        "absent_error": "ValueError: row columns differ from schema",
+        "table_sha256": "UNRESOLVED"
+      },
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "NUMERIC-SCALES",
+      "sql_type": "numeric",
+      "inputs": [
+        {
+          "decimal": "1.0"
+        },
+        {
+          "decimal": "1.00"
+        }
+      ],
+      "expected_hex": [
+        "44000000000000000431303a31",
+        "4400000000000000053130303a32"
+      ],
+      "expected_equal": false,
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": [
+          "44000000000000000431303a31",
+          "4400000000000000053130303a32"
+        ],
+        "length": [
+          13,
+          14
+        ],
+        "decoded": [
+          [
+            "numeric",
+            10,
+            1
+          ],
+          [
+            "numeric",
+            100,
+            2
+          ]
+        ],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "JSON-NESTED",
+      "sql_type": "jsonb",
+      "stored_json": "{\"a\":[null,false]}",
+      "expected_wire_tree": {
+        "tag": "J",
+        "length": 47,
+        "child": {
+          "tag": "o",
+          "length": 38,
+          "children": [
+            {
+              "tag": "k",
+              "length": 1,
+              "utf8": "a"
+            },
+            {
+              "tag": "a",
+              "length": 19,
+              "children": [
+                {
+                  "tag": "n",
+                  "length": 0
+                },
+                {
+                  "tag": "b",
+                  "length": 1,
+                  "ascii": "0"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected_sha256": "UNRESOLVED",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Manual flattening of frame tree: J47/o38/k1/a19/n0/b1; 56 bytes total.",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "4a000000000000002f6f00000000000000266b0000000000000001616100000000000000136e000000000000000062000000000000000130",
+        "length": 56,
+        "decoded": {
+          "a": [
+            null,
+            false
+          ]
+        },
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "BYTEA-BINARY",
+      "sql_type": "bytea",
+      "hex_input": "00ff",
+      "expected_hex": "59000000000000000200ff",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "59000000000000000200ff",
+        "length": 11,
+        "decoded": [
+          "bytes-hex",
+          "00ff"
+        ],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "UNICODE-NONNORMALIZED",
+      "sql_type": "text",
+      "inputs": [
+        "\u00e9",
+        "e\u0301"
+      ],
+      "expected_hex": [
+        "540000000000000002c3a9",
+        "54000000000000000365cc81"
+      ],
+      "expected_equal": false,
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": [
+          "540000000000000002c3a9",
+          "54000000000000000365cc81"
+        ],
+        "length": [
+          11,
+          12
+        ],
+        "decoded": [
+          [
+            "text",
+            "\u00e9"
+          ],
+          [
+            "text",
+            "e\u0301"
+          ]
+        ],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "TIMESTAMP-NEGATIVE",
+      "sql_type": "timestamp with time zone",
+      "microseconds": "-1",
+      "expected_hex": "5a00000000000000022d31",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "5a00000000000000022d31",
+        "length": 11,
+        "decoded": [
+          "timestamp-micros",
+          -1
+        ],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "TIMESTAMP-WIRE-BOUNDARIES",
+      "microseconds": [
+        "-9223372036854775808",
+        "9223372036854775807"
+      ],
+      "expected": "ValueError",
+      "note": "Wire guards, not actual PostgreSQL finite-date limits; finite limits require pinned PostgreSQL verification",
+      "postgres_finite_limits": "UNRESOLVED",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "PARTITION-P-A",
+      "input_recipe": {
+        "all_tables": "empty lists for all 30 snapshot_schema tables",
+        "overrides": {
+          "position_guard": [
+            {
+              "position_id": "P-A",
+              "pending_close_command": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "position_ids": [
+          "P-A"
+        ],
+        "position_table_prefix": [
+          "F(v,MPT-SNAPSHOT@1/POSITION)",
+          "F(p,P-A)",
+          "F(t,qualified-name)"
+        ],
+        "global_tables_exclude": "all position_id-bearing tables",
+        "position_sha256": "UNRESOLVED",
+        "global_partition_sha256": "UNRESOLVED"
+      },
+      "note": "Wire-only fixture, not FK-valid persisted database state",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "FULL-EMPTY-AGGREGATE",
+      "input_recipe": {
+        "all_tables": "empty lists for all 30 exact snapshot_schema tables",
+        "published_rows": []
+      },
+      "expected": {
+        "table_digest_count": 30,
+        "positions": [],
+        "empty_tables_included": true,
+        "persisted_sha256": "UNRESOLVED",
+        "published_sha256": "UNRESOLVED",
+        "publication_metadata_sha256": "UNRESOLVED"
+      },
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "ENVELOPE",
+      "input_recipe": {
+        "snapshot": "FULL-EMPTY-AGGREGATE",
+        "manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "config_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "run_id": "VECTOR-ONLY",
+        "authority": "Synthetic constants, never approved runtime inputs"
+      },
+      "expected": {
+        "frame_order": [
+          "v",
+          "h(persisted)",
+          "h(published)",
+          "h(metadata)",
+          "m",
+          "c",
+          "r"
+        ],
+        "partition_digests_in_envelope": false,
+        "metadata": "concatenation of four full normal-version table streams in sorted table-name order",
+        "envelope_sha256": "UNRESOLVED",
+        "total_bytes": 257
+      },
+      "unresolved_inputs": [
+        "independent intermediate digest oracles"
+      ],
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": 257,
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "MULTI-PARTITION",
+      "input_recipe": {
+        "all_tables": "empty lists for all 30 exact snapshot_schema tables",
+        "overrides": {
+          "position_guard": [
+            {
+              "position_id": "P-B",
+              "pending_close_command": null
+            },
+            {
+              "position_id": "P-A",
+              "pending_close_command": "C-1"
+            }
+          ],
+          "publication_domain": [
+            {
+              "domain_id": "D",
+              "policy_version": "1"
+            }
+          ]
+        },
+        "published_rows": []
+      },
+      "expected": {
+        "position_ids": [
+          "P-A",
+          "P-B"
+        ],
+        "position_tables": "ALL position_id-bearing tables per partition, including empty",
+        "global_tables": "ALL tables without position_id",
+        "persisted": "30 table digests",
+        "metadata": "four full normal-version table streams in contract order",
+        "permutation": "same bytes",
+        "change_P_B_only": "P-A and global partition unchanged; P-B and persisted change"
+      },
+      "note": "Complete declarative wire input, not FK-valid database fixture.",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "NEGATIVE-VALUES",
+      "inputs": [
+        [
+          "numeric",
+          "Decimal NaN",
+          "ValueError"
+        ],
+        [
+          "numeric",
+          "Decimal Infinity",
+          "ValueError"
+        ],
+        [
+          "numeric",
+          "float 1.0",
+          "ValueError"
+        ],
+        [
+          "jsonb",
+          "{\"a\":1,\"a\":2}",
+          "ValueError duplicate key"
+        ],
+        [
+          "jsonb",
+          "{\"a\":NaN}",
+          "ValueError nonfinite"
+        ],
+        [
+          "text",
+          "U+D800 lone surrogate",
+          "UnicodeError"
+        ],
+        [
+          "timestamp",
+          "TimestampMicros 9223372036854775808",
+          "ValueError"
+        ],
+        [
+          "timestamp",
+          "naive datetime 1970-01-01",
+          "ValueError"
+        ],
+        [
+          "timestamp",
+          "Infinity / -Infinity",
+          "collector rejects"
+        ]
+      ],
+      "unicode_mutation": "Replacing U+0065 U+0301 with U+00E9 must violate exact byte equality.",
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": "UNRESOLVED",
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "TIME-OUTSIDE-DATETIME",
+      "input": {
+        "typed": "TimestampMicros",
+        "microseconds": "253402300800000000"
+      },
+      "expected": {
+        "decoded": [
+          "timestamp-micros",
+          "253402300800000000"
+        ],
+        "wire": "accepted by integer wire guard",
+        "datetime": "year 10000 not representable; no clamping",
+        "postgres_finite_validity": "UNRESOLVED"
+      },
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT.md; SNAPSHOT-DECISION-ADDENDUM.md; snapshot_schema.json",
+        "derivation": "Independent manual frame arithmetic and declarative values, neither implementation executed",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "evidence": "NOT_RUN",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "oracle": {
+        "bytes": "UNRESOLVED",
+        "length": "UNRESOLVED",
+        "decoded": [
+          "timestamp-micros",
+          "253402300800000000"
+        ],
+        "intermediate_digest": "UNRESOLVED",
+        "final_digest": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "FULL-TYPED-30-TABLES",
+      "contract": "MPT-SNAPSHOT@1",
+      "recipe": "snapshot_oracle.populated_fixture(snapshot_schema.tables): one row per table; every one of 191 fields present; nullable non-PK fields NULL; explicit type map in source",
+      "published_rows": "nonempty eight-column typed row in test_fully_populated_typed_snapshot",
+      "wire_only": true,
+      "expected": {
+        "table_count": 30,
+        "total_fields": 191,
+        "normal_table_records": "UNRESOLVED",
+        "position_table_records": "UNRESOLVED",
+        "position_aggregates": "UNRESOLVED",
+        "global_table_records": "UNRESOLVED",
+        "global_aggregate": "UNRESOLVED",
+        "metadata": "UNRESOLVED",
+        "published": "UNRESOLVED",
+        "envelope": "UNRESOLVED"
+      },
+      "provenance": {
+        "source": "FULL-SNAPSHOT-CONTRACT; SNAP-P01..05; independent typed oracle and layer_records",
+        "calculation": "future independently authorized evaluation; no codec import or result copying",
+        "reviewer": "PENDING_HUMAN_APPROVAL",
+        "status": "MATERIALIZED_NOT_RUN",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      },
+      "blocker": "No candidate execution authorized; complete layer bytes/length/hash records not computed or frozen"
+    },
+    {
+      "id": "POSTGRES-FINITE-EXTREMES",
+      "contract": "MPT-SNAPSHOT@1",
+      "positive_inputs": "UNRESOLVED pending exact pinned PostgreSQL finite bounds",
+      "negative_inputs": [
+        "infinity",
+        "-infinity",
+        "fractional stored microseconds",
+        "wire int64 endpoints",
+        "Python UTC conversion overflow"
+      ],
+      "expected": {
+        "stored_precision": "exact microseconds; never infer discarded upstream precision",
+        "wire_vs_database": "passing int64 guard does not establish PostgreSQL validity",
+        "byte_oracles": "UNRESOLVED",
+        "digest_oracles": "UNRESOLVED"
+      },
+      "provenance": {
+        "source": "SNAPSHOT-DECISION-ADDENDUM temporal domains",
+        "reviewer": "PENDING_HUMAN_APPROVAL",
+        "status": "UNRESOLVED",
+        "human_review": "PENDING_HUMAN_APPROVAL",
+        "future_independent_derivation": "snapshot_oracle.py typed fixture derivation and layer_records; no codec import, NOT_RUN"
+      }
+    }
+  ],
+  "revision": "0.13"
+}

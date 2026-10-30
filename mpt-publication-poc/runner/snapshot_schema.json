@@ -1,0 +1,1195 @@
+{
+  "contract": "MPT-SNAPSHOT@1",
+  "tables": {
+    "publication_domain": {
+      "columns": [
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "domain_id"
+      ]
+    },
+    "publication_barrier": {
+      "columns": [
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "committed_ordinal",
+          "type": "bigint",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "domain_id"
+      ]
+    },
+    "recipient_guard": {
+      "columns": [
+        {
+          "name": "tenant_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "owner_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "access_version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "access_allowed",
+          "type": "boolean",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "tenant_id",
+        "owner_id"
+      ]
+    },
+    "position": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "tenant_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "owner_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "instrument_label",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "persisted_version",
+          "type": "bigint",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id"
+      ]
+    },
+    "position_guard": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "pending_close_command",
+          "type": "text",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id"
+      ]
+    },
+    "command_receipt": {
+      "columns": [
+        {
+          "name": "tenant_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "owner_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "command_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "actor_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "expected_position_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "expected_plan_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "canonical_payload",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "fingerprint",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "response_code",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "response_payload",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "tenant_id",
+        "owner_id",
+        "command_id"
+      ]
+    },
+    "publication_batch": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "origin_type",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "origin_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "fingerprint",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "publication_status",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "ordinal",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "failure_reason",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "content_frozen",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "state_version",
+          "type": "bigint",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "batch_id"
+      ]
+    },
+    "publication_cut": {
+      "columns": [
+        {
+          "name": "cut_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "ordinal",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "resolution_policy_version",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "frontier_position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "frontier_batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "capture_transaction",
+          "type": "xid8",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "cut_id"
+      ]
+    },
+    "position_event": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "event_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "command_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "correction_of",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "recorded_at_observed",
+          "type": "timestamp with time zone",
+          "nullable": false
+        },
+        {
+          "name": "user_reported_execution_at",
+          "type": "timestamp with time zone",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id",
+        "event_id"
+      ]
+    },
+    "position_revision": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "predecessor_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "event_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "lifecycle",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "side",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "remaining_quantity",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "average_entry_price",
+          "type": "numeric",
+          "nullable": false
+        },
+        {
+          "name": "last_confirmed_at_observed",
+          "type": "timestamp with time zone",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "version"
+      ]
+    },
+    "plan": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "persisted_version",
+          "type": "bigint",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id"
+      ]
+    },
+    "plan_revision": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "predecessor_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "command_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "stop_price",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "name": "target_price",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "name": "note",
+          "type": "text",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id",
+        "version"
+      ]
+    },
+    "personal_journal_entry": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "entry_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "event_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "note",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "recorded_at_observed",
+          "type": "timestamp with time zone",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "entry_id"
+      ]
+    },
+    "public_projection": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "position_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "plan_version",
+          "type": "bigint",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id"
+      ]
+    },
+    "assessment_attempt": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "attempt_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "cut_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "position_version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "plan_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "rule_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "rule_version",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "parameter_identity",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "execution_status",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "assessment_mode",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "decision_time_observed",
+          "type": "timestamp with time zone",
+          "nullable": false
+        },
+        {
+          "name": "reconstructed_at_observed",
+          "type": "timestamp with time zone",
+          "nullable": true
+        },
+        {
+          "name": "failure_code",
+          "type": "text",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id",
+        "attempt_id"
+      ]
+    },
+    "assessment_result": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "result_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "attempt_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "supersedes_result_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "fingerprint",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "evaluability",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "content_nature",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "content_text",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "limitation",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "result_id"
+      ]
+    },
+    "notification_decision": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "result_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "policy_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "decision",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "result_id"
+      ]
+    },
+    "publication_member": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "member_order",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "position_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "plan_version",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "result_id",
+          "type": "text",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id",
+        "batch_id",
+        "member_order"
+      ]
+    },
+    "notification": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "notification_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "origin_type",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "command_event_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "result_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "policy_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "destination_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "dedup_key",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "delivery_status",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "notification_id"
+      ]
+    },
+    "outbox_event": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "outbox_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "command_event_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "result_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "notification_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "dispatch_status",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "lease_token",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "lease_until_observed",
+          "type": "timestamp with time zone",
+          "nullable": true
+        }
+      ],
+      "pk": [
+        "position_id",
+        "outbox_id"
+      ]
+    },
+    "send_authorization": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "authorization_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "notification_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "tenant_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "owner_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "access_version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "final_check_position_version",
+          "type": "bigint",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "authorization_id"
+      ]
+    },
+    "access_audit": {
+      "columns": [
+        {
+          "name": "tenant_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "owner_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "access_version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "allowed",
+          "type": "boolean",
+          "nullable": false
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "tenant_id",
+        "owner_id",
+        "access_version"
+      ]
+    },
+    "delivery_audit": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "audit_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "notification_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "authorization_id",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "checkpoint",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "audit_id"
+      ]
+    },
+    "synthetic_destination_receipt": {
+      "columns": [
+        {
+          "name": "destination_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "dedup_key",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "authorization_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "payload_fingerprint",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "destination_id",
+        "dedup_key"
+      ]
+    },
+    "synthetic_destination_call": {
+      "columns": [
+        {
+          "name": "call_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "destination_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "dedup_key",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "authorization_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "checkpoint",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "call_id"
+      ]
+    },
+    "domain_resolution_policy": {
+      "columns": [
+        {
+          "name": "domain_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "domain_id",
+        "policy_version"
+      ]
+    },
+    "batch_recovery_audit": {
+      "columns": [
+        {
+          "name": "request_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "batch_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "expected_version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "actor",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "observed_at",
+          "type": "timestamp with time zone",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "request_id"
+      ]
+    },
+    "worker_lease": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "purpose",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "worker_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "purpose"
+      ]
+    },
+    "worker_lease_audit": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "purpose",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "worker_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "actor",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "observed_at",
+          "type": "timestamp with time zone",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "purpose",
+        "epoch"
+      ]
+    },
+    "t4_operation_receipt": {
+      "columns": [
+        {
+          "name": "position_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "operation_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "notification_id",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "request_payload",
+          "type": "jsonb",
+          "nullable": false
+        },
+        {
+          "name": "request_fingerprint",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "response",
+          "type": "text",
+          "nullable": false
+        }
+      ],
+      "pk": [
+        "position_id",
+        "operation_id"
+      ]
+    }
+  }
+}
