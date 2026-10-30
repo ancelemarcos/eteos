@@ -1,0 +1,21 @@
+{
+  "execution_authorized": false,
+  "isolated_environment_approved": false,
+  "credentials_external": true,
+  "fixture_authorized": false,
+  "cleanup_plan_approved": false,
+  "independent_oracle_reviewed": false,
+  "reader_role": "mpt_snapshot_reader",
+  "manifest_sha256": "UNRESOLVED",
+  "environment_sha256": "UNRESOLVED",
+  "scenarios_sha256": "UNRESOLVED",
+  "driver_build": "UNRESOLVED",
+  "libpq_build": "UNRESOLVED",
+  "postgres_build": "UNRESOLVED",
+  "environment_identity": "UNRESOLVED",
+  "fixture_identity": "UNRESOLVED",
+  "reviewer_identity": "UNRESOLVED",
+  "transport_sha256": "UNRESOLVED",
+  "isolation_evidence_sha256": "UNRESOLVED",
+  "oracle_sha256": "UNRESOLVED"
+}
